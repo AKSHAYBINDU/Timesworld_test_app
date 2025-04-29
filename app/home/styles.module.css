@@ -1,0 +1,13 @@
+.navlinks:active{
+    border-bottom: 2px solid black;
+}
+
+.right_content {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(232, 232, 232);
+    margin: 0 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
