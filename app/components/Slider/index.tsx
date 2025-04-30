@@ -5,6 +5,7 @@ import { Container } from "react-bootstrap";
 export default function Slider() {
   return (
     <Container>
+      
       <Carousel slide={false} className=" bg-body-tertiary">
         <Carousel.Item>
           <img
@@ -14,7 +15,6 @@ export default function Slider() {
           />
           <Carousel.Caption>
             <h3>Country One</h3>
-            
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -25,7 +25,6 @@ export default function Slider() {
           />
           <Carousel.Caption>
             <h3>Country Two</h3>
-           
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -36,7 +35,6 @@ export default function Slider() {
           />
           <Carousel.Caption>
             <h3>Country Three</h3>
-            
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
