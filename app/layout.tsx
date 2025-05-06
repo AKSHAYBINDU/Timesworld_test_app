@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ReduxProvider from "./store/provider";
 
 export const metadata: Metadata = {
   title: "NextJS TimesWorld Test APp",
@@ -15,7 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ReduxProvider>{children}</ReduxProvider>
+      </body>
     </html>
   );
 }

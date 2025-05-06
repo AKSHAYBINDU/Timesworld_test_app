@@ -3,11 +3,38 @@
 import { Button, Col, Container, Form } from "react-bootstrap";
 import styles from "./page.module.css";
 import Image from "next/image";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "./store/userSlice";
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
-  const handleSubmit = () => {
-    // handle form submit
+  const [name, setName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const validatePassword = (pwd: string) => {
+    const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+    return regex.test(pwd);
   };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (validatePassword(password)) {
+      dispatch(login());
+      console.log(`user name is ${name} and password is ${password}`);
+      console.log("hello");
+      router.push("/home");
+    } else {
+      setError(
+        "Password must be at least 8 characters, include 1 capital letter, 1 number, and 1 symbol."
+      );
+    }
+  };
+
   return (
     <Container>
       <div className=" row d-flex justify-content-center align-items-center vh-100">
@@ -28,11 +55,15 @@ export default function Login() {
                 type="text"
                 placeholder="Username or email"
                 className={styles.input}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
               <input
                 type="password"
                 placeholder="Password"
                 className={styles.input}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <Form.Check
                 type="checkbox"
@@ -40,6 +71,7 @@ export default function Login() {
                 id="keepMeLoggedIn"
                 className={styles.form_checkbox}
               />
+              {error && <p className="text-danger">{error}</p>}
               <Button type="submit" className={styles.form_button}>
                 Login
               </Button>
