@@ -1,0 +1,13 @@
+.loadmore {
+    background-color: rgb(69, 69, 69);
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 0%;
+    padding: 16px 32px;
+}
+
+.loadmore:hover {
+    background-color: rgb(14, 14, 14);
+    transition: 1s;
+}

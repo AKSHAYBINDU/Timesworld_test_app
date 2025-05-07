@@ -1,48 +1,56 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import styles from "./styles.module.css";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/store/store";
+
 export default function CountryCard() {
-  const countries = [
-    {
-      name: "Virgin Islands (U.S.)",
-      region: "Americas",
-      flag: "https://flagcdn.com/vi.svg",
-      independent: false,
-    },
-    {
-      name: "Åland Islands",
-      region: "Europe",
-      flag: "https://flagcdn.com/ax.svg",
-      independent: false,
-    },
-    {
-      name: "Albania",
-      region: "Europe",
-      flag: "https://flagcdn.com/al.svg",
-      independent: false,
-    },
-    {
-        name: "Virgin Islands (U.S.)",
-        region: "Americas",
-        flag: "https://flagcdn.com/vi.svg",
-        independent: false,
-      },
-      {
-        name: "Åland Islands",
-        region: "Europe",
-        flag: "https://flagcdn.com/ax.svg",
-        independent: false,
-      },
-      {
-        name: "Albania",
-        region: "Europe",
-        flag: "https://flagcdn.com/al.svg",
-        independent: false,
-      },
-  ];
+  const [countries, setCountries] = useState<Country[]>([]);
+  const [visibleCount, setVisibleCount] = useState(9);
+
+  interface Country {
+    name: string;
+    region: string;
+    flag: string;
+    independent: boolean;
+  }
+
+
+
+  const activeRegion = useSelector((state: RootState) => state.region.value);
+
+    useEffect(() => {
+    axios
+      .get<Country[]>(
+        "https://restcountries.com/v2/all?fields=name,region,flag"
+      )
+      .then((res) => {
+        setCountries(res.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching countries:", err);
+      });
+  }, []);
+
+  
+  const filtered = activeRegion === "All"
+    ? countries
+    : countries.filter((c) => c.region === activeRegion);
+
+
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => prev + 9);
+  };
+
   return (
     <div className="container my-5">
       <div className="row ">
-        {countries.map((country, index) => (
+        {filtered.slice(0, visibleCount).map((country, index) => (
           <div className="col-md-6 col-lg-4 mb-4" key={index}>
-            <div className={`d-flex border-2 border border-dark justify-content-center align-items-center gap-2 py-3`}>
+            <div
+              className={`d-flex border-2 border border-dark justify-content-center align-items-center gap-2 py-3`}
+            >
               <div
                 style={{ width: "80px", height: "80px", objectFit: "contain" }}
                 className=" p-2 overflow-hidden d-flex justify-content-center align-items-center"
@@ -60,6 +68,13 @@ export default function CountryCard() {
             </div>
           </div>
         ))}
+      </div>
+      <div className=" d-flex justify-content-center align-items-center">
+        {visibleCount < countries.length && (
+          <Button className={styles.loadmore} onClick={handleLoadMore}>
+            Load More
+          </Button>
+        )}
       </div>
     </div>
   );

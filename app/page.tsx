@@ -26,7 +26,6 @@ export default function Login() {
     if (validatePassword(password)) {
       dispatch(login());
       console.log(`user name is ${name} and password is ${password}`);
-      console.log("hello");
       router.push("/home");
     } else {
       setError(

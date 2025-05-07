@@ -1,24 +1,21 @@
 "use client";
 
-import {
-  Button,
-  Container,
-  Image,
-  Nav,
-  Navbar,
-} from "react-bootstrap";
+import { Button, Container, Image, Nav, Navbar } from "react-bootstrap";
 import styles from "./styles.module.css";
 import Slider from "../components/Slider";
 import CountryCard from "../components/CountryCard";
 import { logout } from "../store/userSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import { setRegion } from "../store/regionSlice";
+import { RootState } from "../store/store";
+
+const links = ["All", "Asia", "Europe", "Africa"];
 
 export default function Page() {
-  const links = ["All", "Asia", "Europe", "Africa"];
-
   const dispatch = useDispatch();
   const router = useRouter();
+  const activeRegion = useSelector((state: RootState) => state.region.value);
 
   const handleLogout = () => {
     console.log("user logout");
@@ -36,15 +33,17 @@ export default function Page() {
           <div className=" d-flex justify-content-end align-items-end flex-column">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className=" py-4 py-lg-0">
-                {links.map((item, index) => (
-                  <Nav.Link
-                    key={index}
-                    href={`#${item.toLowerCase()}`}
-                    className={styles.navlinks}
-                  >
-                    {item}
-                  </Nav.Link>
+              <Nav className=" py-4 py-lg-0" activeKey={activeRegion} onSelect={(selectedKey) => dispatch(setRegion(selectedKey!))}>
+                {links.map((region) => (
+                  <Nav.Item key={region}>
+                    <Nav.Link
+                      eventKey={region}
+                      href={`#${region.toLowerCase()}`}
+                      className={styles.navlinks}
+                    >
+                      {region}
+                    </Nav.Link>
+                  </Nav.Item>
                 ))}
               </Nav>
               <Button
@@ -61,13 +60,13 @@ export default function Page() {
       {/* Slider Component */}
 
       <section className="">
-        <div className=" d-flex justify-content-center align-items-center text-center my-5">
-          <div className={styles.lines}></div>
+        <div className=" d-lg-flex  align-items-start text-center my-5">
+          <div className={styles.lineOne}></div>
           <h1 className=" fw-bolder text-black w-100 m-0">WELCOME</h1>
-          <div className={styles.lines}></div>
+          <div className={styles.lineTwo}></div>
         </div>
         <div className=" row">
-          <div className="col-lg-8 col-12">
+          <div className="col-lg-8 col-12 pb-5">
             <Slider />
           </div>
           <div className="col-lg-4 col-12">

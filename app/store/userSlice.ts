@@ -5,7 +5,7 @@ interface UserState {
 }
 
 const initialState: UserState = {
-  isAuthenticated: false,
+  isAuthenticated: typeof window !== 'undefined' && localStorage.getItem('auth') === 'true',
 };
 
 const userSlice = createSlice({
@@ -14,9 +14,15 @@ const userSlice = createSlice({
   reducers: {
     login(state: { isAuthenticated: boolean; }) {
       state.isAuthenticated = true;
+      if( typeof window !== 'undefined') {
+        localStorage.setItem('auth', 'true');
+      }
     },
     logout(state: { isAuthenticated: boolean; }) {
         state.isAuthenticated = false;
+        if( typeof window !== 'undefined') {
+          localStorage.removeItem('auth');
+        }
       },
   },
 });
