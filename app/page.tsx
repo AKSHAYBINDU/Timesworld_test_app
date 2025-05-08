@@ -101,18 +101,19 @@ export default function Login() {
                   alt="instagram logo"
                   className={styles.social_media_icons}
                 />
-                <Image
-                  src="/login/LinkedIn.png"
-                  width={50}
-                  height={50}
-                  alt="linkedin logo"
-                  className={styles.social_media_icons}
-                />
+                
                 <Image
                   src="/login/Facebook.png"
                   width={50}
                   height={50}
                   alt="facebook logo"
+                  className={styles.social_media_icons}
+                />
+                <Image
+                  src="/login/Instagram.png"
+                  width={50}
+                  height={50}
+                  alt="instagram logo"
                   className={styles.social_media_icons}
                 />
               </div>

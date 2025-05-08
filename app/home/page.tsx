@@ -117,13 +117,7 @@ export default function Page() {
             alt="instagram logo"
             className={styles.social_media_icons}
           />
-          <Image
-            src="/login/LinkedIn.png"
-            width={50}
-            height={50}
-            alt="linkedin logo"
-            className={styles.social_media_icons}
-          />
+          
           <Image
             src="/login/Facebook.png"
             width={50}
@@ -131,12 +125,23 @@ export default function Page() {
             alt="facebook logo"
             className={styles.social_media_icons}
           />
+          <Image
+            src="/login/Instagram.png"
+            width={50}
+            height={50}
+            alt="instagram logo"
+            className={styles.social_media_icons}
+          />
         </div>
 
         <div className=" text-center py-5">
-          <a href="mailto:example.com" className={styles.footer_text}>example.com</a>
+          <a href="mailto:example.com" className={styles.footer_text}>
+            example.com
+          </a>
 
-          <p className={styles.footer_text}>Copyright © 2025 Akshay. All rights reserved.</p>
+          <p className={styles.footer_text}>
+            Copyright © 2025 Akshay. All rights reserved.
+          </p>
         </div>
       </section>
     </Container>
