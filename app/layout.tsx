@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ReduxProvider from "./store/provider";
+import ReduxProvider from "../store/provider";
 
 export const metadata: Metadata = {
   title: "NextJS TimesWorld Test APp",

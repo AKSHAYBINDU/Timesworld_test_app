@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import styles from "./styles.module.css";
 import { useSelector } from "react-redux";
-import { RootState } from "@/app/store/store";
+import { RootState } from "@/store/store";
 
 export default function CountryCard() {
   const [countries, setCountries] = useState<Country[]>([]);

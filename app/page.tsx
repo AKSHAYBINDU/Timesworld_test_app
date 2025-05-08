@@ -5,7 +5,7 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { login } from "./store/userSlice";
+import { login } from "../store/userSlice";
 import { useRouter } from "next/navigation";
 
 export default function Login() {

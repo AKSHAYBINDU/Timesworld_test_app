@@ -2,13 +2,13 @@
 
 import { Button, Container, Image, Nav, Navbar } from "react-bootstrap";
 import styles from "./styles.module.css";
-import Slider from "../components/Slider";
-import CountryCard from "../components/CountryCard";
-import { logout } from "../store/userSlice";
+import Slider from "../../components/Slider";
+import CountryCard from "../../components/CountryCard";
+import { logout } from "../../store/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import { setRegion } from "../store/regionSlice";
-import { RootState } from "../store/store";
+import { setRegion } from "../../store/regionSlice";
+import { RootState } from "../../store/store";
 import { useEffect } from "react";
 
 const links = ["All", "Asia", "Europe", "Africa"];
