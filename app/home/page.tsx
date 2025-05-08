@@ -62,7 +62,7 @@ export default function Page() {
                 ))}
               </Nav>
               <Button
-                className=" bg-black border-black px-4"
+                className=" bg-black border-black px-4 rounded-0"
                 onClick={handleLogout}
               >
                 Logout
