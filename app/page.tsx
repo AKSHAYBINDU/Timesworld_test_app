@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "./store/userSlice";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [name, setName] = useState<string>("");
@@ -64,12 +64,11 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <Form.Check
-                type="checkbox"
-                label="Keep me logged in"
-                id="keepMeLoggedIn"
-                className={styles.form_checkbox}
-              />
+
+              <Form.Check type="checkbox" id="keepMeLoggedIn">
+                <Form.Check.Input className={styles.form_checkbox} />
+                <Form.Check.Label>Keep me logged in</Form.Check.Label>
+              </Form.Check>
               {error && <p className="text-danger">{error}</p>}
               <Button type="submit" className={styles.form_button}>
                 Login
@@ -87,34 +86,34 @@ export default function Login() {
 
               {/* Social Media */}
 
-              <div className=" d-flex w-100 justify-content-between align-items-center">
+              <div className=" d-flex justify-content-between align-items-center gap-3">
                 <Image
                   src="/login/Facebook.png"
                   width={50}
                   height={50}
                   alt="facebook logo"
-                  className=" bg-black rounded-5"
+                  className={styles.social_media_icons}
                 />
                 <Image
                   src="/login/Instagram.png"
                   width={50}
                   height={50}
                   alt="instagram logo"
-                  className=" bg-black rounded-5"
+                  className={styles.social_media_icons}
                 />
                 <Image
                   src="/login/LinkedIn.png"
                   width={50}
                   height={50}
                   alt="linkedin logo"
-                  className=" bg-black rounded-5"
+                  className={styles.social_media_icons}
                 />
                 <Image
                   src="/login/Facebook.png"
                   width={50}
                   height={50}
                   alt="facebook logo"
-                  className=" bg-black rounded-5"
+                  className={styles.social_media_icons}
                 />
               </div>
             </div>

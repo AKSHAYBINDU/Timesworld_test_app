@@ -38,3 +38,39 @@
   width: 50%;
   background-color: rgb(226, 226, 226);
 }
+
+.form_checkbox {
+  border-radius: 0;
+  border: 2px solid black;
+  padding: 8px ;
+}
+
+.form_checkbox:focus {
+  border-radius: 0;
+  border: 2px solid black;
+  background-color: black;
+  padding: 8px ;
+  outline: none;
+}
+
+.form_checkbox:checked {
+  border-radius: 0;
+  border: 2px solid black;
+  background-color: black;
+  padding: 8px ;
+  outline: none;
+}
+
+.social_media_icons {
+  background-color: rgb(94, 94, 94);
+  border-radius: 50%;
+}
+
+
+.social_media_icons:hover   {
+  background-color: black;
+  border-radius: 50%;
+  transition: 1s;
+  cursor: pointer;
+}
+

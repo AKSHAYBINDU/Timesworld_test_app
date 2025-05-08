@@ -1,3 +1,5 @@
+"use client";
+
 import Carousel from "react-bootstrap/Carousel";
 import styles from "./styles.module.css";
 import { Container } from "react-bootstrap";
@@ -27,8 +29,6 @@ export default function Slider() {
         console.error("Error fetching countries:", err);
       });
   }, []);
-
-
 
   return (
     <Container>

@@ -1,3 +1,5 @@
+"use client";
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
@@ -7,7 +9,7 @@ import { RootState } from "@/app/store/store";
 
 export default function CountryCard() {
   const [countries, setCountries] = useState<Country[]>([]);
-  const [visibleCount, setVisibleCount] = useState(9);
+  const [visibleCount, setVisibleCount] = useState(15);
 
   interface Country {
     name: string;
@@ -16,31 +18,31 @@ export default function CountryCard() {
     independent: boolean;
   }
 
-
-
   const activeRegion = useSelector((state: RootState) => state.region.value);
 
-    useEffect(() => {
-    axios
-      .get<Country[]>(
-        "https://restcountries.com/v2/all?fields=name,region,flag"
-      )
-      .then((res) => {
-        setCountries(res.data);
-      })
-      .catch((err) => {
-        console.error("Error fetching countries:", err);
-      });
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await axios.get<Country[]>(
+          "https://restcountries.com/v2/all?fields=name,region,flag"
+        );
+        setCountries(response.data);
+      } catch (error) {
+        console.error("Error fetching countries:", error);
+      }
+    };
+
+    fetchCountries();
   }, []);
 
-  
-  const filtered = activeRegion === "All"
-    ? countries
-    : countries.filter((c) => c.region === activeRegion);
-
+  const filtered =
+    activeRegion === "All"
+      ? countries
+      : countries.filter((c) => c.region === activeRegion);
 
   const handleLoadMore = () => {
-    setVisibleCount((prev) => prev + 9);
+    setVisibleCount((prev) => prev + 15);
   };
 
   return (
@@ -49,7 +51,7 @@ export default function CountryCard() {
         {filtered.slice(0, visibleCount).map((country, index) => (
           <div className="col-md-6 col-lg-4 mb-4" key={index}>
             <div
-              className={`d-flex border-2 border border-dark justify-content-center align-items-center gap-2 py-3`}
+              className={`d-flex border-2 border border-dark shadow justify-content-center align-items-center gap-2 py-3`}
             >
               <div
                 style={{ width: "80px", height: "80px", objectFit: "contain" }}

@@ -25,3 +25,33 @@
 .lineTwo {
     align-self: flex-end;
 }
+
+.footer_section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 48px;
+}
+
+.footer_text {
+    color: rgb(94, 94, 94);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 0;
+}
+
+.social_media_icons {
+    background-color: rgb(94, 94, 94);
+    border-radius: 50%;
+}
+
+
+.social_media_icons:hover   {
+    background-color: black;
+    border-radius: 50%;
+    transition: 1s;
+    cursor: pointer;
+  }
+  
